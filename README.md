@@ -18,4 +18,6 @@ StayManager is a React + TypeScript + Vite web application for managing apartmen
 - TailwindCSS
 - Supabase (Auth + Database)
 - React Query for data fetching and state management
+- React Router for routing
 - date-fns for date formatting
+- Recharts for displaying charts
