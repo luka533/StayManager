@@ -21,3 +21,7 @@ StayManager is a React + TypeScript + Vite web application for managing apartmen
 - React Router for routing
 - date-fns for date formatting
 - Recharts for displaying charts
+
+## Live demo
+
+https://staymanager-demo.netlify.app/login
