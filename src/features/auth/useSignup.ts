@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { signup as signupApi } from "../../services/apiAuth";
 import type { AuthData, AuthPayload } from "../../types/auth";
 
 export function useSignup() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const {
     mutate: signup,
@@ -13,7 +14,8 @@ export function useSignup() {
     error,
   } = useMutation<AuthData, Error, AuthPayload>({
     mutationFn: signupApi,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      queryClient.setQueryData(["user"], data?.user);
       navigate("/");
     },
   });
