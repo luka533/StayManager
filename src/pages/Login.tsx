@@ -2,7 +2,7 @@ import { useLogin } from "../features/auth/useLogin.ts";
 import AuthPage from "../ui/AuthPage";
 
 function Login() {
-  const { login, isLoading } = useLogin();
+  const { login, isLoading, error } = useLogin();
 
   return (
     <AuthPage
@@ -11,6 +11,7 @@ function Login() {
       signIn={false}
       action={login}
       isLoading={isLoading}
+      error={error}
     />
   );
 }

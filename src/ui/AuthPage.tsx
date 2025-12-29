@@ -10,6 +10,7 @@ type AuthPageProps = {
   signIn: boolean;
   action: UseMutateFunction<AuthData | null, Error, AuthPayload>;
   isLoading: boolean;
+  error?: Error | null;
 };
 
 export default function AuthPage({
@@ -18,6 +19,7 @@ export default function AuthPage({
   signIn = false,
   action,
   isLoading,
+  error,
 }: AuthPageProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -87,6 +89,8 @@ export default function AuthPage({
               Password
             </label>
           </div>
+
+          {error && <p className="text-red-500 text-center">{error.message}</p>}
 
           <button
             disabled={isLoading}
