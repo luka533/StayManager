@@ -54,9 +54,17 @@ export default function AuthPage({
                 onChange={(e) => setFullName(e.target.value)}
                 required
                 placeholder=" "
-                className="peer w-full px-4 py-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="peer w-full px-4 py-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent "
               />
-              <label className="absolute left-4 top-3 text-gray-400 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-emerald-500 peer-focus:text-xs transition-all">
+              <label
+                className={`absolute left-4 transition-all text-sm
+                ${
+                  fullName
+                    ? "top-0 text-xs text-emerald-500"
+                    : "top-3 text-gray-400"
+                }
+                peer-focus:top-0 peer-focus:text-xs peer-focus:text-emerald-500`}
+              >
                 Full name
               </label>
             </div>
@@ -71,7 +79,13 @@ export default function AuthPage({
               placeholder=" "
               className="peer w-full px-4 py-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
             />
-            <label className="absolute left-4 top-3 text-gray-400 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-emerald-500 peer-focus:text-xs transition-all">
+            <label
+              className={`absolute left-4 transition-all text-sm
+              ${
+                email ? "top-0 text-xs text-emerald-500" : "top-3 text-gray-400"
+              }
+              peer-focus:top-0 peer-focus:text-xs peer-focus:text-emerald-500`}
+            >
               Email
             </label>
           </div>
@@ -85,7 +99,15 @@ export default function AuthPage({
               placeholder=" "
               className="peer w-full px-4 py-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
             />
-            <label className="absolute left-4 top-3 text-gray-400 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-emerald-500 peer-focus:text-xs transition-all">
+            <label
+              className={`absolute left-4 transition-all text-sm
+              ${
+                password
+                  ? "top-0 text-xs text-emerald-500"
+                  : "top-3 text-gray-400"
+              }
+              peer-focus:top-0 peer-focus:text-xs peer-focus:text-emerald-500`}
+            >
               Password
             </label>
           </div>
