@@ -32,12 +32,13 @@ export async function getApartment(id: number): Promise<Apartments> {
 }
 
 export async function deleteApartment(id: number): Promise<void> {
-  const { error } = await supabase.from("apartments").delete().eq("id", id);
+  // delete all dependencies first
+  await supabase.from("bookings").delete().eq("apartmentId", id);
+  await supabase.from("favourites").delete().eq("apartmentId", id);
+  await supabase.from("reviews").delete().eq("apartmentId", id);
 
-  if (error) {
-    console.error(error);
-    throw new Error("Apartment could not be deleted");
-  }
+  // finally delete apartment
+  await supabase.from("apartments").delete().eq("id", id);
 }
 
 export async function duplicateApartment(id: number): Promise<void> {

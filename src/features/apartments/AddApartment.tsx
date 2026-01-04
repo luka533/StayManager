@@ -16,7 +16,7 @@ function AddApartment({ closeForm }: { closeForm: (value: boolean) => void }) {
 
   return (
     <div className="w-full max-w-3xl mx-auto">
-      <h3 className="text-2xl font-semibold mb-6">Edit Apartment</h3>
+      <h3 className="text-2xl font-semibold mb-6">Add Apartment</h3>
       <ApartmentForm
         onSubmit={onSubmit}
         closeForm={() => closeForm(false)}

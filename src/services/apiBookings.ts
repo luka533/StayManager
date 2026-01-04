@@ -11,14 +11,14 @@ export async function getBookings(): Promise<{
   const query = supabase
     .from("bookings")
     .select(
-      "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, apartments(name, image), guests(fullName, email)",
+      "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, apartments(*), guests(fullName, email)",
       { count: "exact" }
     );
 
   const { data, error, count } = await query;
 
   if (error) {
-    console.error(error);
+    console.error(error.message);
     throw new Error("Bookings could not be loaded");
   }
 
@@ -33,7 +33,7 @@ export async function getBooking(id: number): Promise<Booking> {
     .single();
 
   if (error) {
-    console.error(error);
+    console.error(error.message);
     throw new Error("Booking not found");
   }
 

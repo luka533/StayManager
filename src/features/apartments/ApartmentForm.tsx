@@ -28,100 +28,100 @@ function ApartmentForm({
   }, [data, reset]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-6">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto"
+    >
       <div className="col-span-2">
-        <label className="block text-sm font-medium mb-1">Image URL</label>
+        <label className="block text-sm font-medium mb-1">Image URL *</label>
         <input
           type="text"
-          // defaultValue={oldApartment?.image}
           {...register("image", { required: true })}
           className="w-full rounded-md border border-stone-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400"
         />
-        {errors.image?.type === "required" && (
-          <p className="text-red-400" role="alert">
-            Image is required
-          </p>
-        )}
+        {errors.image && <p className="text-red-400 mt-1">Image is required</p>}
       </div>
 
+      {["image2", "image3", "image4"].map((field) => (
+        <div key={field}>
+          <label className="block text-sm font-medium mb-1">{`Image ${field.slice(
+            -1
+          )} (optional)`}</label>
+          <input
+            type="text"
+            {...register(field as keyof Apartments)}
+            className="w-full rounded-md border border-stone-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400"
+          />
+        </div>
+      ))}
+
       <div>
-        <label className="block text-sm font-medium mb-1">Name</label>
+        <label className="block text-sm font-medium mb-1">Name *</label>
         <input
           type="text"
-          // defaultValue={oldApartment?.name}
           {...register("name", { required: true })}
           className="w-full rounded-md border border-stone-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400"
         />
-        {errors.name?.type === "required" && (
-          <p className="text-red-400" role="alert">
-            First name is required
-          </p>
-        )}
+        {errors.name && <p className="text-red-400 mt-1">Name is required</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">Capacity</label>
+        <label className="block text-sm font-medium mb-1">Capacity *</label>
         <input
           type="number"
-          // defaultValue={oldApartment?.maxCapacity}
-          {...register("maxCapacity", {
-            required: true,
-            valueAsNumber: true,
-          })}
+          {...register("maxCapacity", { required: true, valueAsNumber: true })}
           className="w-full rounded-md border border-stone-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400"
         />
-        {errors.maxCapacity?.type === "required" && (
-          <p className="text-red-400" role="alert">
-            Capacity is required
-          </p>
+        {errors.maxCapacity && (
+          <p className="text-red-400 mt-1">Capacity is required</p>
         )}
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">Price</label>
+        <label className="block text-sm font-medium mb-1">Price *</label>
         <input
           type="number"
-          // defaultValue={oldApartment?.regularPrice}
-          {...register("regularPrice", {
-            required: true,
-            valueAsNumber: true,
-          })}
+          {...register("regularPrice", { required: true, valueAsNumber: true })}
           className="w-full rounded-md border border-stone-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400"
         />
-        {errors.regularPrice?.type === "required" && (
-          <p className="text-red-400" role="alert">
-            Price is required
-          </p>
+        {errors.regularPrice && (
+          <p className="text-red-400 mt-1">Price is required</p>
         )}
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">Discount</label>
+        <label className="block text-sm font-medium mb-1">Discount *</label>
         <input
           type="number"
-          // defaultValue={oldApartment?.discount}
           {...register("discount", { required: true, valueAsNumber: true })}
           className="w-full rounded-md border border-stone-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400"
         />
-        {errors.discount?.type === "required" && (
-          <p className="text-red-400" role="alert">
-            Discount is required
-          </p>
+        {errors.discount && (
+          <p className="text-red-400 mt-1">Discount is required</p>
         )}
       </div>
 
       <div className="col-span-2">
-        <label className="block text-sm font-medium mb-1">Description</label>
-        <textarea
-          // defaultValue={oldApartment?.description}
-          {...register("description", { required: true })}
-          rows={4}
+        <label className="block text-sm font-medium mb-1">
+          GPS Location (lat,lng) *
+        </label>
+        <input
+          type="text"
+          placeholder="e.g., 52.5200, 13.4050"
+          {...register("location", { required: true })}
           className="w-full rounded-md border border-stone-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400"
         />
-        {errors.description?.type === "required" && (
-          <p className="text-red-400" role="alert">
-            Description is required
-          </p>
+      </div>
+
+      <div className="col-span-2">
+        <label className="block text-sm font-medium mb-1">Description *</label>
+        <textarea
+          {...register("description", { required: true })}
+          rows={3}
+          className="w-full rounded-md border border-stone-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400"
+        />
+        {errors.description && (
+          <p className="text-red-400 mt-1">Description is required</p>
         )}
       </div>
 

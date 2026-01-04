@@ -10,13 +10,10 @@ export type Apartment = {
 };
 
 export type Guests = {
-  countryFlag: string;
   created_at: string;
   email: string;
   fullName: string;
   id: number;
-  nationalID: string;
-  nationality: string;
 };
 
 export interface Booking {
@@ -24,7 +21,7 @@ export interface Booking {
   guests: Guests;
 
   apartmentId: number;
-  cabinPrice: number;
+  apartmentPrice: number;
   created_at: string;
   endDate: string;
   extrasPrice: number;

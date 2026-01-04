@@ -26,7 +26,7 @@ function BookingDetails() {
     observations,
     isPaid,
     status,
-    cabinPrice,
+    apartmentPrice,
     extrasPrice,
     totalPrice,
     apartments,
@@ -110,7 +110,7 @@ function BookingDetails() {
 
           <PriceRow
             label="Cabin price"
-            value={`${formatCurrency(cabinPrice)}`}
+            value={`${formatCurrency(apartmentPrice)}`}
           />
           <PriceRow label="Extras" value={`${formatCurrency(extrasPrice)}`} />
           <div className="border-t pt-3 flex justify-between font-semibold">
