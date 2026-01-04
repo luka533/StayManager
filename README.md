@@ -28,4 +28,4 @@ StayManager is a React + TypeScript + Vite web application for managing apartmen
 - email: test@email.com
 - password: 123456
 
-https://staymanager-demo.netlify.app
+https://stay-manager-xi.vercel.app
