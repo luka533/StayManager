@@ -4,15 +4,26 @@ import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useDeleteBooking } from "../booking/useDeleteBooking";
+import { useUpdateBooking } from "../booking/useUpdateBooking";
 
-const options = ["See Details", "Checkin", "Delete"];
 const ITEM_HEIGHT = 48;
 
-export default function LongMenu({ id }: { id: number }) {
-  const navigate = useNavigate();
-  // const { isDeleting, deleteApartment } = useDeleteApartment();
+type LongMenuProps = {
+  status: "checked-in" | "checked-out" | "unconfirmed";
+  id: number;
+};
 
-  // const { updateBooking, isCheckingIn } = useUpdateBooking();
+export default function LongMenu({ status, id }: LongMenuProps) {
+  const options = ["See Details", "Delete"];
+
+  // if checked-in or unconfirmed make extra field (checkout or checkin)
+  if (status === "checked-in") options.push("Checkout");
+  if (status === "unconfirmed") options.push("Checkin");
+
+  const navigate = useNavigate();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
+  const { updateBooking, isUpdating } = useUpdateBooking();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -25,9 +36,14 @@ export default function LongMenu({ id }: { id: number }) {
 
   function handleAction(option: string) {
     if (option === "See Details") navigate(`/bookings/${id}`);
-    // if (option === "Checkin")
-    //   updateBooking({ id, newData: { status: "checked-in" } });
-    // if (option === "Delete") deleteApartment(id);
+    if (option === "Checkout" || option === "Checkin")
+      updateBooking({
+        bookingId: id,
+        newData: {
+          status: status === "checked-in" ? "checked-out" : "checked-in",
+        },
+      });
+    if (option === "Delete") deleteBooking(id);
   }
 
   return (
@@ -68,6 +84,7 @@ export default function LongMenu({ id }: { id: number }) {
                 handleAction(option);
                 handleClose();
               }}
+              disabled={isDeleting || isUpdating}
             >
               {option}
             </MenuItem>

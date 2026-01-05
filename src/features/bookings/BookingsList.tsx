@@ -94,7 +94,7 @@ function BookingsList() {
               {/* Amount */}
               <div className="font-semibold">{formatCurrency(totalPrice)}</div>
               <div className="text-right pl-3">
-                <LongMenu id={id} />
+                <LongMenu status={status} id={id} />
               </div>
             </div>
           );

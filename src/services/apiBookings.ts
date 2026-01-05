@@ -44,12 +44,7 @@ export async function updateBooking(
   id: number,
   obj: { status: "checked-in" | "checked-out" }
 ): Promise<void> {
-  const { error } = await supabase
-    .from("bookings")
-    .update(obj)
-    .eq("id", id)
-    .select()
-    .single();
+  const { error } = await supabase.from("bookings").update(obj).eq("id", id);
 
   if (error) {
     console.error(error);
