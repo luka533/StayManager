@@ -13,7 +13,9 @@ export async function getBookings(): Promise<{
     .select(
       "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, apartments(*), guests(fullName, email)",
       { count: "exact" }
-    );
+    )
+    // works because startdate is stored as a timestamp
+    .order("startDate", { ascending: false });
 
   const { data, error, count } = await query;
 
